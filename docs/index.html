@@ -12,6 +12,9 @@
 </head>
 <body>
 
+  <!-- ========== INTERACTIVE CIRCUIT BACKGROUND ========== -->
+  <canvas id="circuitCanvas"></canvas>
+
   <!-- ========== LEFT SIDEBAR ========== -->
   <aside class="sidebar sidebar-left" id="sidebarLeft">
     <div class="profile-section">
@@ -66,7 +69,7 @@
   <main class="main-content" id="mainContent">
 
     <!-- Hero -->
-    <section class="hero-section" id="hero">
+    <section class="hero-section reveal" id="hero">
       <div class="hero-content">
         <p class="hero-greeting">Ciao, sono</p>
         <h2 class="hero-name">Valerio Russo</h2>
@@ -94,7 +97,7 @@
     </section>
 
     <!-- About -->
-    <section class="section" id="about">
+    <section class="section reveal" id="about">
       <h2 class="section-title">About Me</h2>
       <div class="about-content">
         <p>Sono Valerio Russo, OBR Plan & Forecast Senior Analyst presso Costa Crociere a Genova. Ho una formazione da Ingegnere Gestionale con specializzazione in Supply Chain e Logistica, laureato al Politecnico di Torino.</p>
@@ -103,13 +106,15 @@
       </div>
     </section>
 
+    <div class="section-divider"><span></span></div>
+
     <!-- Experience -->
-    <section class="section" id="experience">
+    <section class="section reveal" id="experience">
       <h2 class="section-title">Experience</h2>
       <div class="experience-grid">
 
         <!-- Costa Crociere -->
-        <article class="experience-card">
+        <article class="experience-card reveal">
           <div class="exp-card-header">
             <div>
               <h3 class="exp-title">OBR Plan & Forecast Senior Analyst</h3>
@@ -120,13 +125,13 @@
           <ul class="exp-details">
             <li>Sviluppo e gestione di dashboard tattiche e operative per il reporting degli Onboard Revenues, a supporto delle decisioni strategiche di bordo</li>
             <li>Guida alla transizione business del progetto Total Value, key user lato OBR Business e Commercial Intelligence</li>
-            <li>Definizione, monitoraggio e analisi critica dei KPI di performance vs target e forecast, con identificazione di trend e aree di miglioramento</li>
+            <li>Definizione, monitoraggio e analisi critica dei KPI di performance vs target e forecast</li>
             <li>Progettazione e implementazione di soluzioni di automazione dei processi di business, con focus sull'efficientamento operativo del team</li>
           </ul>
         </article>
 
         <!-- Lavazza -->
-        <article class="experience-card">
+        <article class="experience-card reveal">
           <div class="exp-card-header">
             <div>
               <h3 class="exp-title">Control Tower Data Analyst</h3>
@@ -138,14 +143,14 @@
             <li>Controlling e Reporting per Technical Service, Altre Business Unit e consociate</li>
             <li>Creazione e monitoraggio KPI: costi, capitale investito, efficienza logistica</li>
             <li>Big Data analytics su piattaforma IoT: creatore del primo KPI oggettivo di Qualita del Caffe</li>
-            <li>Project Manager e Key User per implementazione Business Intelligence</li>
-            <li>Automazione processi con risparmio del 10% FTE efficientato</li>
-            <li>Consulenza interna in Excel, PowerBI e Power Apps</li>
+            <li>Project Manager e Key User in Business Intelligence</li>
+            <li>Automazione processi con un risparmio del 10% FTE</li>
+            <li>Consulenza in Excel, PowerBI e Power Apps</li>
           </ul>
         </article>
 
         <!-- Fratelli Merano -->
-        <article class="experience-card">
+        <article class="experience-card reveal">
           <div class="exp-card-header">
             <div>
               <h3 class="exp-title">Junior Project Manager</h3>
@@ -164,12 +169,15 @@
       </div>
     </section>
 
+    <div class="section-divider"><span></span></div>
+
     <!-- Projects -->
-    <section class="section" id="projects">
+    <section class="section reveal" id="projects">
       <h2 class="section-title">Projects</h2>
       <div class="projects-grid">
 
-        <article class="project-card">
+        <article class="project-card reveal">
+          <span class="project-status status-private">Private</span>
           <div class="project-image">
             <img src="assets/project-erp.png" alt="ERP Gestionale" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=project-image-placeholder>&#x1F4CA;</span>'">
           </div>
@@ -177,15 +185,16 @@
             <h3 class="project-title">ERP Gestionale</h3>
             <p class="project-description">Gestionale completo per azienda di autotrasporti: dall'acquisizione clienti alla fatturazione elettronica FatturaPA, con dashboard KPI e launcher portabile USB.</p>
             <div class="project-tags">
-              <span class="tag">Node.js</span>
-              <span class="tag">Desktop</span>
-              <span class="tag">Fatturazione</span>
-              <span class="tag">KPI</span>
+              <span class="tag tag-lang">Node.js</span>
+              <span class="tag tag-tool">Desktop</span>
+              <span class="tag tag-domain">Fatturazione</span>
+              <span class="tag tag-domain">KPI</span>
             </div>
           </div>
         </article>
 
-        <article class="project-card">
+        <article class="project-card reveal">
+          <span class="project-status status-private">Private</span>
           <div class="project-image">
             <img src="assets/project-protcivile.png" alt="Protezione Civile" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=project-image-placeholder>&#x1F6A8;</span>'">
           </div>
@@ -193,15 +202,17 @@
             <h3 class="project-title">Interventi Protezione Civile</h3>
             <p class="project-description">App web per gestire interventi di emergenza: mappa interattiva, gestione squadre e turni, geocodifica automatica, export PDF professionale.</p>
             <div class="project-tags">
-              <span class="tag">Web App</span>
-              <span class="tag">Mappa</span>
-              <span class="tag">GeoAPI</span>
-              <span class="tag">PDF</span>
+              <span class="tag tag-tool">Web App</span>
+              <span class="tag tag-tool">Mappa</span>
+              <span class="tag tag-lang">GeoAPI</span>
+              <span class="tag tag-tool">PDF</span>
+              <span class="tag tag-domain">RLS</span>
             </div>
           </div>
         </article>
 
-        <article class="project-card">
+        <article class="project-card reveal">
+          <span class="project-status status-private">Private</span>
           <div class="project-image">
             <img src="assets/project-expense.png" alt="SplitExpense Tracker" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=project-image-placeholder>&#x1F4B0;</span>'">
           </div>
@@ -209,46 +220,51 @@
             <h3 class="project-title">SplitExpense Tracker</h3>
             <p class="project-description">App per dividere le spese tra due persone con analytics mensili, grafici, categorie personalizzabili e funzionamento offline (PWA).</p>
             <div class="project-tags">
-              <span class="tag">PWA</span>
-              <span class="tag">Analytics</span>
-              <span class="tag">Offline</span>
+              <span class="tag tag-tool">PWA</span>
+              <span class="tag tag-domain">Analytics</span>
+              <span class="tag tag-tool">Offline</span>
             </div>
           </div>
         </article>
 
-        <article class="project-card">
+        <article class="project-card reveal project-card-live">
+          <a href="https://3valli-png.github.io/catasto-unified/" target="_blank" rel="noopener" class="project-link-overlay" title="Apri Catasto Unified (user: tmp / pwd: tmp)"></a>
+          <span class="project-status status-live">Live Demo</span>
           <div class="project-image">
             <img src="assets/project-catasto.png" alt="Catasto Unified" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=project-image-placeholder>&#x1F5FA;</span>'">
           </div>
           <div class="project-body">
-            <h3 class="project-title">Catasto Unified</h3>
+            <h3 class="project-title">Catasto Unified <svg class="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></h3>
             <p class="project-description">Consultazione e export dati catastali italiani: selezione su mappa, import/export CSV e Shapefile, servizi WFS INSPIRE dell'Agenzia delle Entrate.</p>
+            <p class="project-credentials">Login: user <strong>tmp</strong> / pwd <strong>tmp</strong></p>
             <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">GIS</span>
-              <span class="tag">WFS</span>
-              <span class="tag">Mappa</span>
+              <span class="tag tag-lang">Python</span>
+              <span class="tag tag-tool">GIS</span>
+              <span class="tag tag-lang">WFS</span>
+              <span class="tag tag-tool">Mappa</span>
             </div>
           </div>
         </article>
 
-        <article class="project-card">
+        <article class="project-card reveal">
+          <span class="project-status status-active">Sei qui!</span>
           <div class="project-image">
             <img src="assets/project-chatbot.png" alt="Portfolio Chatbot" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=project-image-placeholder>&#x1F916;</span>'">
           </div>
           <div class="project-body">
             <h3 class="project-title">Portfolio Chatbot</h3>
-            <p class="project-description">Chatbot intelligente per il portfolio con RAG keyword-based, streaming in tempo reale e stack completamente gratuito. Lo stai usando adesso!</p>
+            <p class="project-description">Chatbot intelligente per il portfolio con RAG keyword-based, streaming in tempo reale e stack completamente gratuito. Clicca il bottone in basso a destra!</p>
             <div class="project-tags">
-              <span class="tag">Groq API</span>
-              <span class="tag">RAG</span>
-              <span class="tag">SSE</span>
-              <span class="tag">Vercel</span>
+              <span class="tag tag-lang">Groq API</span>
+              <span class="tag tag-tool">RAG</span>
+              <span class="tag tag-tool">SSE</span>
+              <span class="tag tag-tool">Vercel</span>
             </div>
           </div>
         </article>
 
-        <article class="project-card">
+        <article class="project-card reveal">
+          <span class="project-status status-private">Private</span>
           <div class="project-image">
             <img src="assets/project-xbrl.png" alt="XBRL Financial Analyzer" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=project-image-placeholder>&#x1F4B9;</span>'">
           </div>
@@ -256,10 +272,10 @@
             <h3 class="project-title">XBRL Financial Analyzer</h3>
             <p class="project-description">Tool Python per l'analisi automatizzata di bilanci aziendali XBRL: parsing, estrazione voci, calcolo KPI finanziari e screening multi-azienda.</p>
             <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">pandas</span>
-              <span class="tag">XBRL</span>
-              <span class="tag">Finance</span>
+              <span class="tag tag-lang">Python</span>
+              <span class="tag tag-lang">pandas</span>
+              <span class="tag tag-domain">XBRL</span>
+              <span class="tag tag-domain">Finance</span>
             </div>
           </div>
         </article>
@@ -267,8 +283,10 @@
       </div>
     </section>
 
+    <div class="section-divider"><span></span></div>
+
     <!-- Skills -->
-    <section class="section" id="skills">
+    <section class="section reveal" id="skills">
       <h2 class="section-title">Skills</h2>
       <div class="skills-grid">
         <div class="skill-card">
@@ -343,8 +361,10 @@
       </div>
     </section>
 
+    <div class="section-divider"><span></span></div>
+
     <!-- Passions -->
-    <div class="passions-section" id="passions">
+    <div class="passions-section reveal" id="passions">
       <h2 class="section-title">Beyond Work</h2>
       <div class="passions-grid">
         <div class="passion-card">
@@ -502,6 +522,7 @@
     </div>
   </div>
 
+  <script src="circuit.js"></script>
   <script src="chat.js"></script>
 </body>
 </html>
