@@ -3,7 +3,7 @@
 // SSE Streaming + localStorage Memory
 // ============================================
 
-const API_URL = 'https://YOUR-VERCEL-PROJECT.vercel.app/api/chat'; // <-- PERSONALIZZA dopo deploy
+const API_URL = 'https://interactive-portfolio-flame.vercel.app/api/chat';
 
 const STORAGE_KEY = 'portfolio-chat-history';
 const MAX_HISTORY = 20; // Max messaggi salvati in localStorage
