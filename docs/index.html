@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/profile.jpg" as="image">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,7 +19,7 @@
   <!-- ========== LEFT SIDEBAR ========== -->
   <aside class="sidebar sidebar-left" id="sidebarLeft">
     <div class="profile-section">
-      <img src="assets/profile.jpg" alt="Valerio Russo" class="profile-photo">
+      <img src="assets/profile.jpg" alt="Valerio Russo" class="profile-photo" fetchpriority="high">
       <h1 class="profile-name">Valerio Russo</h1>
       <p class="profile-role">OBR Plan & Forecast Senior Analyst</p>
       <span class="profile-badge">
@@ -91,7 +92,7 @@
         </div>
         <div class="highlight-card">
           <span class="highlight-number">3</span>
-          <span class="highlight-label">Aziende FMCG+</span>
+          <span class="highlight-label">Aziende</span>
         </div>
       </div>
     </section>
