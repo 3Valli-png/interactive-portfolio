@@ -1,0 +1,12 @@
+{
+  "name": "interactive-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio chatbot con RAG keyword-based, Groq API e SSE streaming",
+  "private": true,
+  "dependencies": {
+    "groq-sdk": "^0.8.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

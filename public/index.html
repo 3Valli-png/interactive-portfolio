@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valerio Russo - Portfolio Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="chat-container">
+    <header class="chat-header">
+      <div class="header-info">
+        <div class="avatar">VR</div>
+        <div>
+          <h1>Valerio Russo</h1>
+          <p class="subtitle">Portfolio Assistant</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="langToggle" class="btn-lang" title="Switch language">IT/EN</button>
+        <button id="clearChat" class="btn-clear" title="Nuova conversazione">&#x21bb;</button>
+      </div>
+    </header>
+
+    <main id="chatMessages" class="chat-messages">
+      <!-- Messages will be inserted here -->
+    </main>
+
+    <footer class="chat-input-area">
+      <form id="chatForm" class="chat-form">
+        <input
+          type="text"
+          id="messageInput"
+          placeholder="Chiedimi qualcosa sul mio portfolio..."
+          autocomplete="off"
+          maxlength="500"
+        >
+        <button type="submit" id="sendBtn" title="Invia">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 2L11 13"></path>
+            <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+          </svg>
+        </button>
+      </form>
+    </footer>
+  </div>
+
+  <script src="chat.js"></script>
+</body>
+</html>
