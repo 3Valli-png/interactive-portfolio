@@ -3,7 +3,7 @@ const { getRelevantContext } = require('../lib/rag');
 const { validateInput, sanitizeInput, detectLanguage, buildSystemPrompt } = require('../lib/guardrails');
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-const MODEL = process.env.GROQ_MODEL || 'compound-beta';
+const MODEL = process.env.GROQ_MODEL || 'openai/gpt-oss-120b';
 
 module.exports = async function handler(req, res) {
   // CORS preflight
@@ -52,8 +52,8 @@ module.exports = async function handler(req, res) {
       model: MODEL,
       messages,
       stream: true,
-      temperature: 0.3,  // Bassa per risposte più fedeli al contesto
-      max_tokens: 1024,
+      temperature: 0.6,  // Bilanciata: fedele al contesto ma naturale
+      max_tokens: 512,   // Risposte brevi e conversazionali
     });
 
     // SSE headers
