@@ -1,30 +1,134 @@
 // ============================================
-// Portfolio Chatbot - Client Side
-// SSE Streaming + localStorage Memory
+// Portfolio CV + Chatbot Widget
+// Navigation + Chat Widget + SSE Streaming
 // ============================================
 
 const API_URL = 'https://interactive-portfolio-flame.vercel.app/api/chat';
 
 const STORAGE_KEY = 'portfolio-chat-history';
-const MAX_HISTORY = 20; // Max messaggi salvati in localStorage
+const MAX_HISTORY = 20;
 
 // State
 let currentLang = 'it';
 let isStreaming = false;
-
-// DOM Elements
-const chatMessages = document.getElementById('chatMessages');
-const chatForm = document.getElementById('chatForm');
-const messageInput = document.getElementById('messageInput');
-const sendBtn = document.getElementById('sendBtn');
-const langToggle = document.getElementById('langToggle');
-const clearChat = document.getElementById('clearChat');
+let chatOpen = false;
 
 // ============================================
-// Inizializzazione
+// Initialization
 // ============================================
 
-function init() {
+document.addEventListener('DOMContentLoaded', () => {
+  initNavigation();
+  initChatWidget();
+  initChat();
+});
+
+// ============================================
+// Portfolio Navigation
+// ============================================
+
+function initNavigation() {
+  // Smooth scroll for nav links
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      closeMobileSidebar();
+    });
+  });
+
+  // Active section tracking via IntersectionObserver
+  const sections = document.querySelectorAll('.section, .hero-section, .passions-section');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.section === id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(section => observer.observe(section));
+
+  // Mobile hamburger
+  const hamburger = document.getElementById('hamburgerBtn');
+  const sidebar = document.getElementById('sidebarLeft');
+  const overlay = document.getElementById('sidebarOverlay');
+
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', closeMobileSidebar);
+  }
+}
+
+function closeMobileSidebar() {
+  const sidebar = document.getElementById('sidebarLeft');
+  const overlay = document.getElementById('sidebarOverlay');
+  if (sidebar) sidebar.classList.remove('open');
+  if (overlay) overlay.classList.remove('active');
+}
+
+// ============================================
+// Chat Widget Controller
+// ============================================
+
+function initChatWidget() {
+  const toggle = document.getElementById('chatToggle');
+  const chatWindow = document.getElementById('chatWindow');
+  const iconOpen = toggle.querySelector('.chat-icon-open');
+  const iconClose = toggle.querySelector('.chat-icon-close');
+  const badge = document.getElementById('chatBadge');
+
+  toggle.addEventListener('click', () => {
+    chatOpen = !chatOpen;
+    chatWindow.classList.toggle('open', chatOpen);
+    chatWindow.setAttribute('aria-hidden', !chatOpen);
+    iconOpen.style.display = chatOpen ? 'none' : 'block';
+    iconClose.style.display = chatOpen ? 'block' : 'none';
+    if (badge) badge.style.display = 'none';
+
+    if (chatOpen) {
+      setTimeout(() => document.getElementById('messageInput').focus(), 300);
+    }
+  });
+
+  // Close with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && chatOpen) {
+      toggle.click();
+    }
+  });
+}
+
+// ============================================
+// Chat Engine (SSE Streaming + localStorage)
+// ============================================
+
+// DOM Elements (resolved after DOMContentLoaded)
+let chatMessages, chatForm, messageInput, sendBtn, langToggle, clearChat;
+
+function initChat() {
+  chatMessages = document.getElementById('chatMessages');
+  chatForm = document.getElementById('chatForm');
+  messageInput = document.getElementById('messageInput');
+  sendBtn = document.getElementById('sendBtn');
+  langToggle = document.getElementById('langToggle');
+  clearChat = document.getElementById('clearChat');
+
   loadHistory();
   showWelcomeMessage();
   chatForm.addEventListener('submit', handleSubmit);
@@ -33,7 +137,6 @@ function init() {
 }
 
 function showWelcomeMessage() {
-  // Mostra benvenuto solo se non ci sono messaggi precedenti
   if (chatMessages.children.length > 0) return;
 
   const welcomeMsg = currentLang === 'it'
@@ -44,7 +147,7 @@ function showWelcomeMessage() {
 }
 
 // ============================================
-// Gestione Messaggi
+// Message Handling
 // ============================================
 
 function addMessage(text, role) {
@@ -114,12 +217,10 @@ async function sendMessage(message) {
       throw new Error(errorData.error || `Errore ${response.status}`);
     }
 
-    // Rimuovi typing indicator e crea messaggio per lo streaming
     removeTypingIndicator();
     const botMessageEl = addStreamingMessage();
     let fullResponse = '';
 
-    // Leggi lo stream SSE
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
     let buffer = '';
@@ -130,14 +231,13 @@ async function sendMessage(message) {
 
       buffer += decoder.decode(value, { stream: true });
 
-      // Processa le linee SSE nel buffer
       const lines = buffer.split('\n');
-      buffer = lines.pop() || ''; // L'ultima linea potrebbe essere incompleta
+      buffer = lines.pop() || '';
 
       for (const line of lines) {
         if (!line.startsWith('data: ')) continue;
 
-        const data = line.slice(6); // Rimuovi "data: "
+        const data = line.slice(6);
 
         if (data === '[DONE]') continue;
 
@@ -157,7 +257,6 @@ async function sendMessage(message) {
       }
     }
 
-    // Salva nella history
     if (fullResponse) {
       saveToHistory({ role: 'user', content: message });
       saveToHistory({ role: 'assistant', content: fullResponse });
@@ -183,11 +282,9 @@ async function handleSubmit(e) {
   const message = messageInput.value.trim();
   if (!message || isStreaming) return;
 
-  // Mostra messaggio utente
   addMessage(message, 'user');
   messageInput.value = '';
 
-  // Disabilita input durante lo streaming
   isStreaming = true;
   sendBtn.disabled = true;
   messageInput.disabled = true;
@@ -196,7 +293,6 @@ async function handleSubmit(e) {
 
   await sendMessage(message);
 
-  // Riabilita input
   isStreaming = false;
   sendBtn.disabled = false;
   messageInput.disabled = false;
@@ -207,7 +303,7 @@ function toggleLanguage() {
   currentLang = currentLang === 'it' ? 'en' : 'it';
   langToggle.textContent = currentLang === 'it' ? 'IT/EN' : 'EN/IT';
   messageInput.placeholder = currentLang === 'it'
-    ? 'Chiedimi qualcosa sul mio portfolio...'
+    ? 'Chiedimi qualcosa...'
     : 'Ask me about my portfolio...';
 }
 
@@ -233,7 +329,6 @@ function getHistory() {
 function saveToHistory(entry) {
   const history = getHistory();
   history.push(entry);
-  // Mantieni solo gli ultimi N messaggi
   const trimmed = history.slice(-MAX_HISTORY);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(trimmed));
 }
@@ -244,9 +339,3 @@ function loadHistory() {
     addMessage(msg.content, msg.role === 'user' ? 'user' : 'bot');
   }
 }
-
-// ============================================
-// Start
-// ============================================
-
-init();
