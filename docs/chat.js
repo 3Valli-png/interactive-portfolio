@@ -8,8 +8,7 @@ const API_URL = 'https://interactive-portfolio-flame.vercel.app/api/chat';
 const STORAGE_KEY = 'portfolio-chat-history';
 const MAX_HISTORY = 20;
 
-// State
-let currentLang = 'it';
+// State (currentLang is provided globally by i18n.js)
 let isStreaming = false;
 let chatOpen = false;
 
@@ -139,31 +138,34 @@ function initChatWidget() {
 // ============================================
 
 // DOM Elements (resolved after DOMContentLoaded)
-let chatMessages, chatForm, messageInput, sendBtn, langToggle, clearChat;
+let chatMessages, chatForm, messageInput, sendBtn, clearChat;
 
 function initChat() {
   chatMessages = document.getElementById('chatMessages');
   chatForm = document.getElementById('chatForm');
   messageInput = document.getElementById('messageInput');
   sendBtn = document.getElementById('sendBtn');
-  langToggle = document.getElementById('langToggle');
   clearChat = document.getElementById('clearChat');
 
   loadHistory();
   showWelcomeMessage();
   chatForm.addEventListener('submit', handleSubmit);
-  langToggle.addEventListener('click', toggleLanguage);
   clearChat.addEventListener('click', clearConversation);
+
+  // Update welcome message when language changes
+  window.addEventListener('langchange', function () {
+    var welcomeEl = document.getElementById('chatWelcomeMsg');
+    if (welcomeEl && window.i18n) {
+      welcomeEl.textContent = window.i18n.t('chat.welcome');
+    }
+  });
 }
 
 function showWelcomeMessage() {
   if (chatMessages.children.length > 0) return;
-
-  const welcomeMsg = currentLang === 'it'
-    ? 'Ciao! Sono l\'assistente virtuale di Valerio. Chiedimi qualcosa sulle sue competenze, esperienze, progetti o formazione.'
-    : 'Hi! I\'m Valerio\'s virtual assistant. Ask me about his skills, experience, projects or education.';
-
-  addMessage(welcomeMsg, 'bot');
+  var welcomeMsg = window.i18n ? window.i18n.t('chat.welcome') : 'Ciao! Sono l\'assistente virtuale di Valerio. Chiedimi qualcosa sulle sue competenze, esperienze, progetti o formazione.';
+  var el = addMessage(welcomeMsg, 'bot');
+  el.id = 'chatWelcomeMsg';
 }
 
 // ============================================
@@ -284,9 +286,7 @@ async function sendMessage(message) {
 
   } catch (error) {
     removeTypingIndicator();
-    const errorMsg = currentLang === 'it'
-      ? 'Errore di connessione. Verifica che il server sia attivo e riprova.'
-      : 'Connection error. Check that the server is running and try again.';
+    var errorMsg = window.i18n ? window.i18n.t('chat.error') : 'Errore di connessione. Verifica che il server sia attivo e riprova.';
     showError(errorMsg);
     console.error('Chat error:', error);
   }
@@ -317,14 +317,6 @@ async function handleSubmit(e) {
   sendBtn.disabled = false;
   messageInput.disabled = false;
   messageInput.focus();
-}
-
-function toggleLanguage() {
-  currentLang = currentLang === 'it' ? 'en' : 'it';
-  langToggle.textContent = currentLang === 'it' ? 'IT/EN' : 'EN/IT';
-  messageInput.placeholder = currentLang === 'it'
-    ? 'Chiedimi qualcosa...'
-    : 'Ask me about my portfolio...';
 }
 
 function clearConversation() {

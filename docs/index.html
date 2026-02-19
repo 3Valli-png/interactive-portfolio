@@ -22,19 +22,19 @@
     <div class="profile-section">
       <img src="assets/profile.jpg" alt="Valerio Russo" class="profile-photo" fetchpriority="high">
       <h1 class="profile-name">Valerio Russo</h1>
-      <p class="profile-role">OBR Plan & Forecast Senior Analyst</p>
+      <p class="profile-role" data-i18n="sidebar.role">OBR Plan & Forecast Senior Analyst</p>
       <span class="profile-badge">
         <span class="badge-dot"></span>
-        Costa Crociere, Genova
+        <span data-i18n="sidebar.badge">Costa Crociere, Genova</span>
       </span>
     </div>
 
     <nav class="sidebar-nav">
-      <a href="#about" class="nav-link active" data-section="about">About</a>
-      <a href="#experience" class="nav-link" data-section="experience">Experience</a>
-      <a href="#projects" class="nav-link" data-section="projects">Projects</a>
-      <a href="#skills" class="nav-link" data-section="skills">Skills</a>
-      <a href="#passions" class="nav-link" data-section="passions">Beyond Work</a>
+      <a href="#about" class="nav-link active" data-section="about" data-i18n="sidebar.nav.about">About</a>
+      <a href="#experience" class="nav-link" data-section="experience" data-i18n="sidebar.nav.experience">Experience</a>
+      <a href="#projects" class="nav-link" data-section="projects" data-i18n="sidebar.nav.projects">Projects</a>
+      <a href="#skills" class="nav-link" data-section="skills" data-i18n="sidebar.nav.skills">Skills</a>
+      <a href="#passions" class="nav-link" data-section="passions" data-i18n="sidebar.nav.passions">Beyond Work</a>
     </nav>
 
     <div class="sidebar-contacts">
@@ -54,7 +54,12 @@
     </div>
 
     <div class="sidebar-footer">
-      <p class="sidebar-credit">&copy; 2025 Valerio Russo</p>
+      <p class="sidebar-credit" data-i18n="sidebar.credit">&copy; 2025 Valerio Russo</p>
+      <button id="langToggleSidebar" class="lang-toggle-btn" title="Switch language" aria-label="Switch language">
+        <svg class="lang-flag lang-flag-it" width="20" height="14" viewBox="0 0 60 42"><rect width="20" height="42" fill="#009246"/><rect x="20" width="20" height="42" fill="#fff"/><rect x="40" width="20" height="42" fill="#CE2B37"/></svg>
+        <svg class="lang-flag lang-flag-en" width="20" height="14" viewBox="0 0 60 42" style="display:none"><clipPath id="gb"><rect width="60" height="42"/></clipPath><g clip-path="url(#gb)"><rect width="60" height="42" fill="#012169"/><path d="M0 0L60 42M60 0L0 42" stroke="#fff" stroke-width="7"/><path d="M0 0L60 42M60 0L0 42" stroke="#C8102E" stroke-width="4"/><path d="M30 0v42M0 21h60" stroke="#fff" stroke-width="10"/><path d="M30 0v42M0 21h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+        <span class="lang-text">IT</span>
+      </button>
     </div>
   </aside>
 
@@ -73,38 +78,38 @@
     <!-- Hero -->
     <section class="hero-section reveal" id="hero">
       <div class="hero-content">
-        <p class="hero-greeting">Ciao, sono</p>
+        <p class="hero-greeting" data-i18n="hero.greeting">Ciao, sono</p>
         <h2 class="hero-name">Valerio Russo</h2>
-        <p class="hero-tagline">Data Analyst | Ingegnere Gestionale | Automation Enthusiast</p>
-        <p class="hero-description">Trasformo dati in decisioni e processi in soluzioni automatizzate. Appassionato di tecnologia, analytics e innovazione.</p>
+        <p class="hero-tagline" data-i18n="hero.tagline">Data Analyst | Ingegnere Gestionale | Automation Enthusiast</p>
+        <p class="hero-description" data-i18n="hero.description">Trasformo dati in decisioni e processi in soluzioni automatizzate. Appassionato di tecnologia, analytics e innovazione.</p>
       </div>
       <div class="hero-highlights">
         <div class="highlight-card">
           <span class="highlight-number">4+</span>
-          <span class="highlight-label">Anni di esperienza</span>
+          <span class="highlight-label" data-i18n="hero.highlight1.label">Anni di esperienza</span>
         </div>
         <div class="highlight-card">
           <span class="highlight-number">6</span>
-          <span class="highlight-label">Side projects</span>
+          <span class="highlight-label" data-i18n="hero.highlight2.label">Side projects</span>
         </div>
         <div class="highlight-card">
           <span class="highlight-number">10%</span>
-          <span class="highlight-label">FTE risparmiato</span>
+          <span class="highlight-label" data-i18n="hero.highlight3.label">FTE risparmiato</span>
         </div>
         <div class="highlight-card">
           <span class="highlight-number">3</span>
-          <span class="highlight-label">Aziende</span>
+          <span class="highlight-label" data-i18n="hero.highlight4.label">Aziende</span>
         </div>
       </div>
     </section>
 
     <!-- About -->
     <section class="section reveal" id="about">
-      <h2 class="section-title">About Me</h2>
+      <h2 class="section-title" data-i18n="about.title">About Me</h2>
       <div class="about-content">
-        <p>Sono Valerio Russo, OBR Plan & Forecast Senior Analyst presso Costa Crociere a Genova. Ho una formazione da Ingegnere Gestionale con specializzazione in Supply Chain e Logistica, laureato al Politecnico di Torino.</p>
-        <p>Il mio percorso professionale combina competenze analitiche, automazione di processi e Business Intelligence, maturate in aziende FMCG di rilievo come Lavazza Group, Fratelli Merano ed ora nel settore crocieristico con Costa Crociere.</p>
-        <p>Mi definisco un <strong>problem solver pragmatico</strong>: uso la tecnologia come strumento per generare valore di business, non come fine a sé stessa. Dalla data engineering alla visualizzazione fino all'interpretazione per il decision-making, copro l'intero ciclo di vita del dato mantenendo sempre il focus sull'impatto aziendale concreto.</p>
+        <p data-i18n="about.p1">Sono Valerio Russo, OBR Plan & Forecast Senior Analyst presso Costa Crociere a Genova. Ho una formazione da Ingegnere Gestionale con specializzazione in Supply Chain e Logistica, laureato al Politecnico di Torino.</p>
+        <p data-i18n="about.p2">Il mio percorso professionale combina competenze analitiche, automazione di processi e Business Intelligence, maturate in aziende FMCG di rilievo come Lavazza Group, Fratelli Merano ed ora nel settore crocieristico con Costa Crociere.</p>
+        <p data-i18n-html="about.p3.html">Mi definisco un <strong>problem solver pragmatico</strong>: uso la tecnologia come strumento per generare valore di business, non come fine a sé stessa. Dalla data engineering alla visualizzazione fino all'interpretazione per il decision-making, copro l'intero ciclo di vita del dato mantenendo sempre il focus sull'impatto aziendale concreto.</p>
       </div>
     </section>
 
@@ -112,23 +117,23 @@
 
     <!-- Experience -->
     <section class="section reveal" id="experience">
-      <h2 class="section-title">Experience</h2>
+      <h2 class="section-title" data-i18n="exp.title">Experience</h2>
       <div class="experience-grid">
 
         <!-- Costa Crociere -->
         <article class="experience-card reveal">
           <div class="exp-card-header">
             <div>
-              <h3 class="exp-title">OBR Plan & Forecast Senior Analyst</h3>
-              <p class="exp-company">Costa Crociere - Genova</p>
-              <span class="exp-period">Mag 2025 - Presente</span>
+              <h3 class="exp-title" data-i18n="exp.costa.role">OBR Plan & Forecast Senior Analyst</h3>
+              <p class="exp-company" data-i18n="exp.costa.company">Costa Crociere - Genova</p>
+              <span class="exp-period" data-i18n="exp.costa.period">Mag 2025 - Presente</span>
             </div>
           </div>
           <ul class="exp-details">
-            <li>Sviluppo e gestione di dashboard tattiche e operative per il reporting degli Onboard Revenues, a supporto delle decisioni strategiche di bordo</li>
-            <li>Guida alla transizione business del progetto Total Value, key user lato OBR Business e Commercial Intelligence</li>
-            <li>Definizione, monitoraggio e analisi critica dei KPI di performance vs target e forecast</li>
-            <li>Progettazione e implementazione di soluzioni di automazione dei processi di business, con focus sull'efficientamento operativo del team</li>
+            <li data-i18n="exp.costa.detail1">Sviluppo e gestione di dashboard tattiche e operative per il reporting degli Onboard Revenues, a supporto delle decisioni strategiche di bordo</li>
+            <li data-i18n="exp.costa.detail2">Guida alla transizione business del progetto Total Value, key user lato OBR Business e Commercial Intelligence</li>
+            <li data-i18n="exp.costa.detail3">Definizione, monitoraggio e analisi critica dei KPI di performance vs target e forecast</li>
+            <li data-i18n="exp.costa.detail4">Progettazione e implementazione di soluzioni di automazione dei processi di business, con focus sull'efficientamento operativo del team</li>
           </ul>
         </article>
 
@@ -136,18 +141,18 @@
         <article class="experience-card reveal">
           <div class="exp-card-header">
             <div>
-              <h3 class="exp-title">Control Tower Data Analyst</h3>
-              <p class="exp-company">Lavazza Group - Torino</p>
-              <span class="exp-period">Mag 2022 - Mag 2025</span>
+              <h3 class="exp-title" data-i18n="exp.lavazza.role">Control Tower Data Analyst</h3>
+              <p class="exp-company" data-i18n="exp.lavazza.company">Lavazza Group - Torino</p>
+              <span class="exp-period" data-i18n="exp.lavazza.period">Mag 2022 - Mag 2025</span>
             </div>
           </div>
           <ul class="exp-details">
-            <li>Controlling e Reporting per Technical Service, Altre Business Unit e consociate</li>
-            <li>Creazione e monitoraggio KPI: costi, capitale investito, efficienza logistica</li>
-            <li>Big Data analytics su piattaforma IoT: creatore del primo KPI oggettivo di Qualita del Caffe</li>
-            <li>Project Manager e Key User in Business Intelligence</li>
-            <li>Automazione processi con un risparmio del 10% FTE</li>
-            <li>Consulenza in Excel, PowerBI e Power Apps</li>
+            <li data-i18n="exp.lavazza.detail1">Controlling e Reporting per Technical Service, Altre Business Unit e consociate</li>
+            <li data-i18n="exp.lavazza.detail2">Creazione e monitoraggio KPI: costi, capitale investito, efficienza logistica</li>
+            <li data-i18n="exp.lavazza.detail3">Big Data analytics su piattaforma IoT: creatore del primo KPI oggettivo di Qualita del Caffe</li>
+            <li data-i18n="exp.lavazza.detail4">Project Manager e Key User in Business Intelligence</li>
+            <li data-i18n="exp.lavazza.detail5">Automazione processi con un risparmio del 10% FTE</li>
+            <li data-i18n="exp.lavazza.detail6">Consulenza in Excel, PowerBI e Power Apps</li>
           </ul>
         </article>
 
@@ -155,16 +160,16 @@
         <article class="experience-card reveal">
           <div class="exp-card-header">
             <div>
-              <h3 class="exp-title">Junior Project Manager</h3>
-              <p class="exp-company">Fratelli Merano s.p.a. - Imperia</p>
-              <span class="exp-period">2021 - 2022</span>
+              <h3 class="exp-title" data-i18n="exp.merano.role">Junior Project Manager</h3>
+              <p class="exp-company" data-i18n="exp.merano.company">Fratelli Merano s.p.a. - Imperia</p>
+              <span class="exp-period" data-i18n="exp.merano.period">2021 - 2022</span>
             </div>
           </div>
           <ul class="exp-details">
-            <li>Analisi di fattibilita per progetto di espansione della capacita aziendale</li>
-            <li>Gestione flussi logistici inbound/outbound</li>
-            <li>Ottimizzazione trasporti con algoritmi di Vehicle Routing</li>
-            <li>Ottimizzazione processi di business con risparmio del 5% FTE</li>
+            <li data-i18n="exp.merano.detail1">Analisi di fattibilita per progetto di espansione della capacita aziendale</li>
+            <li data-i18n="exp.merano.detail2">Gestione flussi logistici inbound/outbound</li>
+            <li data-i18n="exp.merano.detail3">Ottimizzazione trasporti con algoritmi di Vehicle Routing</li>
+            <li data-i18n="exp.merano.detail4">Ottimizzazione processi di business con risparmio del 5% FTE</li>
           </ul>
         </article>
 
@@ -175,17 +180,17 @@
 
     <!-- Projects -->
     <section class="section reveal" id="projects">
-      <h2 class="section-title">Projects</h2>
+      <h2 class="section-title" data-i18n="proj.title">Projects</h2>
       <div class="projects-grid">
 
         <article class="project-card reveal">
-          <span class="project-status status-private">Private</span>
+          <span class="project-status status-private" data-i18n="status.private">Private</span>
           <div class="project-image">
             <img src="assets/project-erp.png" alt="ERP Gestionale" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=project-image-placeholder>&#x1F4CA;</span>'">
           </div>
           <div class="project-body">
-            <h3 class="project-title">ERP Gestionale</h3>
-            <p class="project-description">Gestionale completo per azienda di autotrasporti: dall'acquisizione clienti alla fatturazione elettronica FatturaPA, con dashboard KPI e launcher portabile USB.</p>
+            <h3 class="project-title" data-i18n="proj.erp.title">ERP Gestionale</h3>
+            <p class="project-description" data-i18n="proj.erp.desc">Gestionale completo per azienda di autotrasporti: dall'acquisizione clienti alla fatturazione elettronica FatturaPA, con dashboard KPI e launcher portabile USB.</p>
             <div class="project-tags">
               <span class="tag tag-lang">Node.js</span>
               <span class="tag tag-tool">Desktop</span>
@@ -196,13 +201,13 @@
         </article>
 
         <article class="project-card reveal">
-          <span class="project-status status-private">Private</span>
+          <span class="project-status status-private" data-i18n="status.private">Private</span>
           <div class="project-image">
             <img src="assets/project-protcivile.png" alt="Protezione Civile" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=project-image-placeholder>&#x1F6A8;</span>'">
           </div>
           <div class="project-body">
-            <h3 class="project-title">Interventi Protezione Civile</h3>
-            <p class="project-description">App web per gestire interventi di emergenza: mappa interattiva, gestione squadre e turni, geocodifica automatica, export PDF professionale.</p>
+            <h3 class="project-title" data-i18n="proj.protcivile.title">Interventi Protezione Civile</h3>
+            <p class="project-description" data-i18n="proj.protcivile.desc">App web per gestire interventi di emergenza: mappa interattiva, gestione squadre e turni, geocodifica automatica, export PDF professionale.</p>
             <div class="project-tags">
               <span class="tag tag-tool">Web App</span>
               <span class="tag tag-tool">Mappa</span>
@@ -214,13 +219,13 @@
         </article>
 
         <article class="project-card reveal">
-          <span class="project-status status-private">Private</span>
+          <span class="project-status status-private" data-i18n="status.private">Private</span>
           <div class="project-image">
             <img src="assets/project-expense.png" alt="SplitExpense Tracker" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=project-image-placeholder>&#x1F4B0;</span>'">
           </div>
           <div class="project-body">
             <h3 class="project-title">SplitExpense Tracker</h3>
-            <p class="project-description">App per dividere le spese tra due persone con analytics mensili, grafici, categorie personalizzabili e funzionamento offline (PWA).</p>
+            <p class="project-description" data-i18n="proj.expense.desc">App per dividere le spese tra due persone con analytics mensili, grafici, categorie personalizzabili e funzionamento offline (PWA).</p>
             <div class="project-tags">
               <span class="tag tag-tool">PWA</span>
               <span class="tag tag-domain">Analytics</span>
@@ -230,15 +235,15 @@
         </article>
 
         <article class="project-card reveal project-card-live">
-          <a href="https://3valli-png.github.io/catasto-unified/" target="_blank" rel="noopener" class="project-link-overlay" title="Apri Catasto Unified (user: tmp / pwd: tmp)"></a>
-          <span class="project-status status-live">Live Demo</span>
+          <a href="https://catasto-app.streamlit.app/" target="_blank" rel="noopener" class="project-link-overlay" title="Apri Catasto Unified (user: tmp / pwd: tmp)" data-i18n-title="proj.catasto.link.title"></a>
+          <span class="project-status status-live" data-i18n="status.live">Live Demo</span>
           <div class="project-image">
             <img src="assets/project-catasto.png" alt="Catasto Unified" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=project-image-placeholder>&#x1F5FA;</span>'">
           </div>
           <div class="project-body">
-            <h3 class="project-title">Catasto Unified <svg class="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></h3>
-            <p class="project-description">Consultazione e export dati catastali italiani: selezione su mappa, import/export CSV e Shapefile, servizi WFS INSPIRE dell'Agenzia delle Entrate.</p>
-            <p class="project-credentials">Login: user <strong>tmp</strong> / pwd <strong>tmp</strong></p>
+            <h3 class="project-title"><span data-i18n="proj.catasto.title">Catasto Unified</span> <svg class="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></h3>
+            <p class="project-description" data-i18n="proj.catasto.desc">Consultazione e export dati catastali italiani: selezione su mappa, import/export CSV e Shapefile, servizi WFS INSPIRE dell'Agenzia delle Entrate.</p>
+            <p class="project-credentials" data-i18n-html="proj.catasto.credentials.html">Login: user <strong>tmp</strong> / pwd <strong>tmp</strong></p>
             <div class="project-tags">
               <span class="tag tag-lang">Python</span>
               <span class="tag tag-tool">GIS</span>
@@ -249,13 +254,13 @@
         </article>
 
         <article class="project-card reveal">
-          <span class="project-status status-active">Sei qui!</span>
+          <span class="project-status status-active" data-i18n="status.active">Sei qui!</span>
           <div class="project-image">
             <img src="assets/project-chatbot.png" alt="Portfolio Chatbot" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=project-image-placeholder>&#x1F916;</span>'">
           </div>
           <div class="project-body">
             <h3 class="project-title">Portfolio Chatbot</h3>
-            <p class="project-description">Chatbot intelligente per il portfolio con RAG keyword-based, streaming in tempo reale e stack completamente gratuito. Clicca il bottone in basso a destra!</p>
+            <p class="project-description" data-i18n="proj.chatbot.desc">Chatbot intelligente per il portfolio con RAG keyword-based, streaming in tempo reale e stack completamente gratuito. Clicca il bottone in basso a destra!</p>
             <div class="project-tags">
               <span class="tag tag-lang">Groq API</span>
               <span class="tag tag-tool">RAG</span>
@@ -266,13 +271,13 @@
         </article>
 
         <article class="project-card reveal">
-          <span class="project-status status-private">Private</span>
+          <span class="project-status status-private" data-i18n="status.private">Private</span>
           <div class="project-image">
             <img src="assets/project-xbrl.png" alt="XBRL Financial Analyzer" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=project-image-placeholder>&#x1F4B9;</span>'">
           </div>
           <div class="project-body">
             <h3 class="project-title">XBRL Financial Analyzer</h3>
-            <p class="project-description">Tool Python per l'analisi automatizzata di bilanci aziendali XBRL: parsing, estrazione voci, calcolo KPI finanziari e screening multi-azienda.</p>
+            <p class="project-description" data-i18n="proj.xbrl.desc">Tool Python per l'analisi automatizzata di bilanci aziendali XBRL: parsing, estrazione voci, calcolo KPI finanziari e screening multi-azienda.</p>
             <div class="project-tags">
               <span class="tag tag-lang">Python</span>
               <span class="tag tag-lang">pandas</span>
@@ -289,11 +294,11 @@
 
     <!-- Skills -->
     <section class="section reveal" id="skills">
-      <h2 class="section-title">Skills</h2>
+      <h2 class="section-title" data-i18n="skills.title">Skills</h2>
       <div class="skills-grid">
         <div class="skill-card">
           <div class="skill-icon">&#x1F4CA;</div>
-          <h4 class="skill-name">Excel Avanzato</h4>
+          <h4 class="skill-name" data-i18n="skills.excel.name">Excel Avanzato</h4>
           <p class="skill-detail">Power Query, VBA, Pivot</p>
         </div>
         <div class="skill-card">
@@ -309,12 +314,12 @@
         <div class="skill-card">
           <div class="skill-icon">&#x1F4BE;</div>
           <h4 class="skill-name">SAP</h4>
-          <p class="skill-detail">Conoscenza discreta</p>
+          <p class="skill-detail" data-i18n="skills.sap.detail">Conoscenza discreta</p>
         </div>
         <div class="skill-card">
           <div class="skill-icon">&#x1F5C4;</div>
           <h4 class="skill-name">SQL</h4>
-          <p class="skill-detail">Query, analisi dati</p>
+          <p class="skill-detail" data-i18n="skills.sql.detail">Query, analisi dati</p>
         </div>
         <div class="skill-card">
           <div class="skill-icon">&#x26A1;</div>
@@ -328,32 +333,32 @@
         </div>
       </div>
 
-      <h3 class="subsection-title">Soft Skills</h3>
+      <h3 class="subsection-title" data-i18n="skills.soft.title">Soft Skills</h3>
       <div class="skills-grid">
         <div class="skill-card">
           <div class="skill-icon">&#x1F91D;</div>
           <h4 class="skill-name">Team Building</h4>
-          <p class="skill-detail">Coesione e coordinamento</p>
+          <p class="skill-detail" data-i18n="skills.teambuilding.detail">Coesione e coordinamento</p>
         </div>
         <div class="skill-card">
           <div class="skill-icon">&#x1F9E9;</div>
           <h4 class="skill-name">Problem Solving</h4>
-          <p class="skill-detail">Approccio analitico</p>
+          <p class="skill-detail" data-i18n="skills.problemsolving.detail">Approccio analitico</p>
         </div>
         <div class="skill-card">
           <div class="skill-icon">&#x1F9E0;</div>
           <h4 class="skill-name">Critical Thinking</h4>
-          <p class="skill-detail">Valutazione critica</p>
+          <p class="skill-detail" data-i18n="skills.criticalthinking.detail">Valutazione critica</p>
         </div>
         <div class="skill-card">
           <div class="skill-icon">&#x1F4AC;</div>
-          <h4 class="skill-name">Comunicazione</h4>
-          <p class="skill-detail">Tecnico &#x2192; non tecnico</p>
+          <h4 class="skill-name" data-i18n="skills.communication.name">Comunicazione</h4>
+          <p class="skill-detail" data-i18n="skills.communication.detail">Tecnico &#x2192; non tecnico</p>
         </div>
         <div class="skill-card">
           <div class="skill-icon">&#x1F4CB;</div>
           <h4 class="skill-name">Project Management</h4>
-          <p class="skill-detail">Progetti interfunzionali</p>
+          <p class="skill-detail" data-i18n="skills.pm.detail">Progetti interfunzionali</p>
         </div>
       </div>
     </section>
@@ -362,35 +367,35 @@
 
     <!-- Passions -->
     <div class="passions-section reveal" id="passions">
-      <h2 class="section-title">Beyond Work</h2>
+      <h2 class="section-title" data-i18n="passions.title">Beyond Work</h2>
       <div class="passions-grid">
         <div class="passion-card">
           <span class="passion-emoji">&#x1F6A8;</span>
-          <h4>Volontario</h4>
-          <p>Effettuo servizio di Guardia Medica. Gestione situazioni critiche e connessione con la comunita.</p>
+          <h4 data-i18n="passions.volunteer.title">Volontario</h4>
+          <p data-i18n="passions.volunteer.desc">Effettuo servizio di Guardia Medica. Gestione situazioni critiche e connessione con la comunita.</p>
         </div>
         <div class="passion-card">
           <span class="passion-emoji">&#x1F3C3;</span>
           <h4>Running</h4>
-          <p>Corsa amatoriale per mantenere la mente lucida. Disciplina, costanza e limiti da superare.</p>
+          <p data-i18n="passions.running.desc">Corsa amatoriale per mantenere la mente lucida. Disciplina, costanza e limiti da superare.</p>
         </div>
         <div class="passion-card">
           <span class="passion-emoji">&#x26F0;&#xFE0F;</span>
-          <h4>Montagna</h4>
-          <p>Escursioni e natura per ricaricare le energie. Il mio modo preferito per staccare.</p>
+          <h4 data-i18n="passions.mountain.title">Montagna</h4>
+          <p data-i18n="passions.mountain.desc">Escursioni e natura per ricaricare le energie. Il mio modo preferito per staccare.</p>
         </div>
         <div class="passion-card">
           <span class="passion-emoji">&#x1F4BB;</span>
           <h4>Side Projects</h4>
-          <p>Sviluppo progetti personali per esplorare le nuove tecnologie e risolvere problemi reali.</p>
+          <p data-i18n="passions.sideprojects.desc">Sviluppo progetti personali per esplorare le nuove tecnologie e risolvere problemi reali.</p>
         </div>
       </div>
     </div>
 
     <!-- Footer -->
     <footer class="site-footer">
-      <p>Valerio Russo &copy; 2025</p>
-      <p class="footer-note">Built with vanilla HTML, CSS & JS. Chatbot powered by Groq + RAG.</p>
+      <p data-i18n="footer.credit">Valerio Russo &copy; 2025</p>
+      <p class="footer-note" data-i18n="footer.note">Built with vanilla HTML, CSS & JS. Chatbot powered by Groq + RAG.</p>
     </footer>
 
   </main>
@@ -399,12 +404,12 @@
   <aside class="sidebar sidebar-right" id="sidebarRight">
 
     <div class="sidebar-section">
-      <h3 class="sidebar-heading">Experience</h3>
+      <h3 class="sidebar-heading" data-i18n="rsidebar.exp.title">Experience</h3>
       <div class="timeline">
         <div class="timeline-item">
           <span class="timeline-dot"></span>
           <div class="timeline-content">
-            <span class="timeline-period">2025 - Presente</span>
+            <span class="timeline-period" data-i18n="rsidebar.exp.costa.period">2025 - Presente</span>
             <p class="timeline-role">Senior Analyst</p>
             <p class="timeline-company">Costa Crociere</p>
           </div>
@@ -429,26 +434,26 @@
     </div>
 
     <div class="sidebar-section">
-      <h3 class="sidebar-heading">Education</h3>
+      <h3 class="sidebar-heading" data-i18n="rsidebar.edu.title">Education</h3>
       <div class="education-card">
         <span class="edu-year">2024</span>
-        <p class="edu-degree">Master I livello - AI in Healthcare</p>
+        <p class="edu-degree" data-i18n="rsidebar.edu.master.degree">Master I livello - AI in Healthcare</p>
         <p class="edu-school">Uni San Raffaele, Roma</p>
       </div>
       <div class="education-card">
         <span class="edu-year">2022</span>
-        <p class="edu-degree">Laurea Magistrale - Ing. Gestionale</p>
+        <p class="edu-degree" data-i18n="rsidebar.edu.mag.degree">Laurea Magistrale - Ing. Gestionale</p>
         <p class="edu-school">Politecnico di Torino</p>
       </div>
       <div class="education-card">
         <span class="edu-year">2019</span>
-        <p class="edu-degree">Laurea Triennale - Ing. Gestionale</p>
+        <p class="edu-degree" data-i18n="rsidebar.edu.triennale.degree">Laurea Triennale - Ing. Gestionale</p>
         <p class="edu-school">Politecnico di Torino</p>
       </div>
     </div>
 
     <div class="sidebar-section">
-      <h3 class="sidebar-heading">Highlights</h3>
+      <h3 class="sidebar-heading" data-i18n="rsidebar.highlights.title">Highlights</h3>
       <div class="highlight-pills">
         <span class="pill">IELTS 6.5</span>
         <span class="pill">Big Data Analytics</span>
@@ -461,10 +466,10 @@
     </div>
 
     <div class="sidebar-section">
-      <h3 class="sidebar-heading">Languages</h3>
+      <h3 class="sidebar-heading" data-i18n="rsidebar.languages.title">Languages</h3>
       <div class="language-item">
-        <span class="lang-name">Italiano</span>
-        <span class="lang-level">Madrelingua</span>
+        <span class="lang-name" data-i18n="rsidebar.lang.it.name">Italiano</span>
+        <span class="lang-level" data-i18n="rsidebar.lang.it.level">Madrelingua</span>
       </div>
       <div class="language-item">
         <span class="lang-name">English</span>
@@ -479,7 +484,7 @@
 
   <!-- ========== CHAT WIDGET ========== -->
   <div class="chat-widget" id="chatWidget">
-    <button class="chat-toggle" id="chatToggle" title="Chat with my AI assistant">
+    <button class="chat-toggle" id="chatToggle" title="Chatta con il mio assistente AI" data-i18n-title="chat.toggle.title">
       <svg class="chat-icon-open" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
       </svg>
@@ -495,20 +500,19 @@
         <div class="header-info">
           <div class="avatar">VR</div>
           <div>
-            <h2>Valerio's Assistant</h2>
-            <p class="subtitle">Chiedimi del portfolio!</p>
+            <h2 data-i18n="chat.header.title">Valerio's Assistant</h2>
+            <p class="subtitle" data-i18n="chat.header.subtitle">Chiedimi del portfolio!</p>
           </div>
         </div>
         <div class="header-actions">
-          <button id="langToggle" class="btn-lang" title="Switch language">IT/EN</button>
-          <button id="clearChat" class="btn-clear" title="Clear">&#x21bb;</button>
+          <button id="clearChat" class="btn-clear" title="Cancella" data-i18n-title="chat.clear.title">&#x21bb;</button>
         </div>
       </header>
       <main id="chatMessages" class="chat-messages"></main>
       <footer class="chat-input-area">
         <form id="chatForm" class="chat-form">
-          <input type="text" id="messageInput" placeholder="Chiedimi qualcosa..." autocomplete="off" maxlength="500">
-          <button type="submit" id="sendBtn" title="Invia">
+          <input type="text" id="messageInput" placeholder="Chiedimi qualcosa..." data-i18n-placeholder="chat.input.placeholder" autocomplete="off" maxlength="500">
+          <button type="submit" id="sendBtn" title="Invia" data-i18n-title="chat.send.title">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M22 2L11 13"></path>
               <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
@@ -520,6 +524,8 @@
   </div>
 
   <script src="circuit.js"></script>
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
   <script src="chat.js"></script>
 </body>
 </html>

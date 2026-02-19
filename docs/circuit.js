@@ -20,7 +20,7 @@
   let pulses = [];
 
   // Colors
-  const GREEN = { r: 0, g: 95, b: 2 };
+  const GREEN = { r: 0, g: 179, b: 65 };
   const GOLD = { r: 192, g: 184, b: 122 };
   const MOUSE_RADIUS = 220;
 
