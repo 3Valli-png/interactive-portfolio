@@ -876,6 +876,13 @@ img {
   animation: glow-badge 2s ease-in-out infinite alternate;
 }
 
+.status-wip {
+  background: rgba(180, 140, 20, 0.85);
+  color: #fef08a;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(220, 180, 40, 0.4);
+}
+
 .status-active {
   background: rgba(192, 184, 122, 0.85);
   color: #1a1f16;

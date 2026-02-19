@@ -63,6 +63,7 @@ const TRANSLATIONS = {
     'proj.title': 'Projects',
     'status.private': 'Private',
     'status.live': 'Live Demo',
+    'status.wip': 'In Sviluppo',
     'status.active': 'Sei qui!',
     // ERP
     'proj.erp.title': 'ERP Gestionale',
@@ -198,6 +199,7 @@ const TRANSLATIONS = {
     'proj.title': 'Projects',
     'status.private': 'Private',
     'status.live': 'Live Demo',
+    'status.wip': 'In Development',
     'status.active': 'You are here!',
     // ERP
     'proj.erp.title': 'ERP Management System',
