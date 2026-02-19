@@ -1505,6 +1505,72 @@ img {
   width: 100%;
 }
 
+/* ============================================
+   KPI Card Entrance
+   ============================================ */
+
+@keyframes card-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.82);
+    filter: blur(10px);
+  }
+  55% {
+    opacity: 1;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.highlight-card.appearing {
+  animation: card-appear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ============================================
+   Typing Effect
+   ============================================ */
+
+.hero-greeting.typing-active::after {
+  content: '|';
+  display: inline-block;
+  color: var(--color-highlight);
+  animation: blink-cursor 0.7s step-end infinite;
+  margin-left: 2px;
+  font-weight: 300;
+}
+
+.hero-greeting.typing-done::after {
+  content: none;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ============================================
+   Spider Chart
+   ============================================ */
+
+.spider-chart-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--space-xl);
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#spiderChart {
+  width: 100%;
+  height: 420px;
+}
+
 /* Prefers reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
@@ -1517,6 +1583,7 @@ img {
   .chat-toggle { animation: none; }
   .status-live { animation: none; }
   .sidebar-section { opacity: 1; transform: none; animation: none; }
+  .hero-greeting.typing-active::after { animation: none; }
 }
 
 /* ============================================

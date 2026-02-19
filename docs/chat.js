@@ -21,6 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initChatWidget();
   initChat();
   initScrollReveal();
+  initCounters();
+  initTypingEffect();
+  initTiltEffect();
+  initSpiderChart();
 });
 
 // ============================================
@@ -87,7 +91,8 @@ function closeMobileSidebar() {
 // ============================================
 
 function initScrollReveal() {
-  const revealElements = document.querySelectorAll('.reveal');
+  // Exclude #about — it's revealed after the hero sequence
+  const revealElements = document.querySelectorAll('.reveal:not(#about)');
 
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -99,6 +104,349 @@ function initScrollReveal() {
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   revealElements.forEach(el => revealObserver.observe(el));
+}
+
+// ============================================
+// Animated Counters (count-up after hero typing)
+// ============================================
+
+function initCounters() {
+  var counterEls = document.querySelectorAll('[data-count-target]');
+  if (!counterEls.length) return;
+
+  // Respect prefers-reduced-motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Pair each counter with its parent highlight-card
+  var items = [];
+  counterEls.forEach(function (el) {
+    var card = el.closest('.highlight-card');
+    if (card) items.push({ card: card, counter: el });
+  });
+
+  // Hide cards and set counters to 0
+  items.forEach(function (item) {
+    item.card.style.opacity = '0';
+    item.card.style.transform = 'translateY(24px) scale(0.82)';
+    item.card.style.filter = 'blur(10px)';
+    item.counter.textContent = '0' + (item.counter.dataset.countSuffix || '');
+  });
+
+  function easeOutExpo(t) {
+    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  }
+
+  function animateCounter(el) {
+    var target = parseInt(el.dataset.countTarget, 10);
+    var suffix = el.dataset.countSuffix || '';
+    var duration = 2000;
+    var start = null;
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      var progress = Math.min((timestamp - start) / duration, 1);
+      var value = Math.round(easeOutExpo(progress) * target);
+      el.textContent = value + suffix;
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  function revealCard(item) {
+    item.card.classList.add('appearing');
+    // Start counter 250ms into the entrance
+    setTimeout(function () {
+      animateCounter(item.counter);
+    }, 250);
+    // Cleanup after animation so hover/tilt effects work normally
+    setTimeout(function () {
+      item.card.classList.remove('appearing');
+      item.card.style.opacity = '';
+      item.card.style.transform = '';
+      item.card.style.filter = '';
+    }, 900);
+  }
+
+  function startCounters() {
+    items.forEach(function (item, index) {
+      setTimeout(function () {
+        revealCard(item);
+      }, index * 250);
+    });
+
+    // Reveal About section after the last card is halfway through
+    var aboutDelay = (items.length - 1) * 250 + 450;
+    setTimeout(function () {
+      var about = document.getElementById('about');
+      if (about) about.classList.add('visible');
+    }, aboutDelay);
+  }
+
+  // Wait for hero typing to finish, then stagger card entrances + counters
+  var fired = false;
+  window.addEventListener('hero-ready', function () {
+    if (fired) return;
+    fired = true;
+    startCounters();
+  });
+
+  // Safety fallback: if hero-ready doesn't fire within 5s, animate anyway
+  setTimeout(function () {
+    if (fired) return;
+    fired = true;
+    startCounters();
+  }, 5000);
+}
+
+// ============================================
+// Typing Effect on Hero
+// ============================================
+
+function initTypingEffect() {
+  // Respect prefers-reduced-motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Still fire hero-ready so counters work via fallback
+    window.dispatchEvent(new CustomEvent('hero-ready'));
+    return;
+  }
+
+  var greeting = document.querySelector('.hero-greeting');
+  var heroName = document.querySelector('.hero-name');
+  var tagline = document.querySelector('.hero-tagline');
+  var description = document.querySelector('.hero-description');
+
+  if (!greeting) return;
+
+  var fullText = greeting.textContent;
+  greeting.textContent = '';
+  greeting.classList.add('typing-active');
+
+  // Hide elements initially
+  if (heroName) { heroName.style.opacity = '0'; heroName.style.transform = 'translateY(15px)'; }
+  if (tagline) { tagline.style.opacity = '0'; tagline.style.transform = 'translateY(15px)'; }
+  if (description) { description.style.opacity = '0'; description.style.transform = 'translateY(15px)'; }
+
+  var charIndex = 0;
+  var typingSpeed = 65;
+
+  function typeChar() {
+    if (charIndex < fullText.length) {
+      greeting.textContent = fullText.slice(0, charIndex + 1);
+      charIndex++;
+      setTimeout(typeChar, typingSpeed);
+    } else {
+      // Typing done, reveal name then tagline then description
+      greeting.classList.remove('typing-active');
+      greeting.classList.add('typing-done');
+      revealElement(heroName, 200);
+      revealElement(tagline, 600);
+      revealElement(description, 900);
+      // Signal counters to start after text reveals settle
+      setTimeout(function () {
+        window.dispatchEvent(new CustomEvent('hero-ready'));
+      }, 1200);
+    }
+  }
+
+  function revealElement(el, delay) {
+    if (!el) return;
+    setTimeout(function () {
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, delay);
+  }
+
+  // Start typing after a brief delay
+  setTimeout(typeChar, 400);
+}
+
+// ============================================
+// 3D Tilt Effect on Cards
+// ============================================
+
+function initTiltEffect() {
+  // Disabled on touch devices
+  if ('ontouchstart' in window) return;
+  // Respect prefers-reduced-motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var cards = document.querySelectorAll('.project-card, .skill-card, .highlight-card');
+  var maxRotation = 8;
+
+  cards.forEach(function (card) {
+    card.style.transformStyle = 'preserve-3d';
+    card.style.willChange = 'transform';
+
+    card.addEventListener('mousemove', function (e) {
+      var rect = card.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var y = e.clientY - rect.top;
+      var centerX = rect.width / 2;
+      var centerY = rect.height / 2;
+
+      var rotateY = ((x - centerX) / centerX) * maxRotation;
+      var rotateX = ((centerY - y) / centerY) * maxRotation;
+
+      card.style.transform = 'perspective(800px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-4px)';
+    });
+
+    card.addEventListener('mouseleave', function () {
+      card.style.transition = 'transform 0.4s ease';
+      card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
+      setTimeout(function () { card.style.transition = ''; }, 400);
+    });
+  });
+}
+
+// ============================================
+// Spider Chart (Plotly.js Radar interattivo)
+// ============================================
+
+function initSpiderChart() {
+  var chartDiv = document.getElementById('spiderChart');
+  if (!chartDiv || typeof Plotly === 'undefined') return;
+
+  var axes = [
+    { key: 'spider.dataAnalytics', fallback: 'Data Analytics', value: 9 },
+    { key: 'spider.businessIntelligence', fallback: 'Business Intelligence', value: 9 },
+    { key: 'spider.businessOrientation', fallback: 'Business Orientation', value: 9 },
+    { key: 'spider.projectManagement', fallback: 'Project Management', value: 8 },
+    { key: 'spider.automationTools', fallback: 'Automation & Tools', value: 7 }
+  ];
+  var maxValue = 10;
+
+  function getLabel(axis) {
+    if (window.i18n && window.i18n.t) {
+      var t = window.i18n.t(axis.key);
+      return t !== axis.key ? t : axis.fallback;
+    }
+    return axis.fallback;
+  }
+
+  function getLabels() {
+    return axes.map(function (a) { return getLabel(a); });
+  }
+
+  function getHoverTexts() {
+    return axes.map(function (a) {
+      return getLabel(a) + ': <b>' + a.value + '/' + maxValue + '</b>';
+    });
+  }
+
+  var values = axes.map(function (a) { return a.value; });
+  var closedValues = values.concat([values[0]]);
+  var zeroValues = closedValues.map(function () { return 0; });
+
+  function buildTrace(r) {
+    var labels = getLabels();
+    var closedLabels = labels.concat([labels[0]]);
+    var hoverTexts = getHoverTexts();
+    hoverTexts.push(hoverTexts[0]);
+
+    return {
+      type: 'scatterpolar',
+      r: r,
+      theta: closedLabels,
+      fill: 'toself',
+      fillcolor: 'rgba(0, 179, 65, 0.15)',
+      line: { color: '#00B341', width: 2.5 },
+      marker: { color: '#00B341', size: 7, line: { color: '#1a1f16', width: 1.5 } },
+      text: hoverTexts,
+      hoverinfo: 'text',
+      hoverlabel: {
+        bgcolor: '#2a3225',
+        bordercolor: '#00B341',
+        font: { color: '#F2E3BB', family: 'Inter, sans-serif', size: 13 }
+      }
+    };
+  }
+
+  var layout = {
+    polar: {
+      radialaxis: {
+        visible: true,
+        range: [0, maxValue],
+        tickvals: [2, 4, 6, 8, 10],
+        gridcolor: 'rgba(74, 80, 64, 0.6)',
+        linecolor: 'rgba(74, 80, 64, 0.6)',
+        tickfont: { color: '#c4c0a8', size: 9, family: 'Inter, sans-serif' },
+        angle: 90
+      },
+      angularaxis: {
+        gridcolor: 'rgba(74, 80, 64, 0.6)',
+        linecolor: 'rgba(74, 80, 64, 0.6)',
+        tickfont: { color: '#F2E3BB', size: 12, family: 'Inter, sans-serif' },
+        direction: 'clockwise'
+      },
+      bgcolor: 'transparent'
+    },
+    paper_bgcolor: 'transparent',
+    plot_bgcolor: 'transparent',
+    showlegend: false,
+    margin: { t: 60, b: 60, l: 130, r: 130 },
+    font: { family: 'Inter, sans-serif' },
+    dragmode: false
+  };
+
+  var config = {
+    responsive: true,
+    displayModeBar: false
+  };
+
+  var animated = false;
+
+  // Respect prefers-reduced-motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    Plotly.newPlot(chartDiv, [buildTrace(closedValues)], layout, config);
+    animated = true;
+  } else {
+    Plotly.newPlot(chartDiv, [buildTrace(zeroValues)], layout, config);
+  }
+
+  function animateChart() {
+    var duration = 1000;
+    var start = null;
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      var progress = Math.min((timestamp - start) / duration, 1);
+      var t = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+
+      var animatedR = values.map(function (v) { return v * t; });
+      animatedR.push(animatedR[0]);
+
+      Plotly.restyle(chartDiv, { r: [animatedR] }, [0]);
+
+      if (progress < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  // Animate on scroll into view
+  if (!animated) {
+    var chartObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !animated) {
+          animated = true;
+          animateChart();
+          chartObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    chartObserver.observe(chartDiv);
+  }
+
+  // Redraw on language change (labels + hover text update)
+  window.addEventListener('langchange', function () {
+    var trace = buildTrace(animated ? closedValues : zeroValues);
+    Plotly.react(chartDiv, [trace], layout, config);
+  });
 }
 
 // ============================================

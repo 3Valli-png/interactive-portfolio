@@ -95,6 +95,13 @@ const TRANSLATIONS = {
     'skills.communication.detail': 'Tecnico \u2192 non tecnico',
     'skills.pm.detail': 'Progetti interfunzionali',
 
+    // === SPIDER CHART ===
+    'spider.dataAnalytics': 'Data Analytics',
+    'spider.businessIntelligence': 'Business Intelligence',
+    'spider.businessOrientation': 'Orientamento al Business',
+    'spider.projectManagement': 'Project Management',
+    'spider.automationTools': 'Automazione & Strumenti',
+
     // === PASSIONS ===
     'passions.title': 'Beyond Work',
     'passions.volunteer.title': 'Volontario',
@@ -221,6 +228,13 @@ const TRANSLATIONS = {
     'skills.communication.name': 'Communication',
     'skills.communication.detail': 'Technical \u2192 non-technical',
     'skills.pm.detail': 'Cross-functional projects',
+
+    // === SPIDER CHART ===
+    'spider.dataAnalytics': 'Data Analytics',
+    'spider.businessIntelligence': 'Business Intelligence',
+    'spider.businessOrientation': 'Business Orientation',
+    'spider.projectManagement': 'Project Management',
+    'spider.automationTools': 'Automation & Tools',
 
     // === PASSIONS ===
     'passions.title': 'Beyond Work',

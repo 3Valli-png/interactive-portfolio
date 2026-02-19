@@ -85,19 +85,19 @@
       </div>
       <div class="hero-highlights">
         <div class="highlight-card">
-          <span class="highlight-number">4+</span>
+          <span class="highlight-number" data-count-target="4" data-count-suffix="+">4+</span>
           <span class="highlight-label" data-i18n="hero.highlight1.label">Anni di esperienza</span>
         </div>
         <div class="highlight-card">
-          <span class="highlight-number">6</span>
+          <span class="highlight-number" data-count-target="6">6</span>
           <span class="highlight-label" data-i18n="hero.highlight2.label">Side projects</span>
         </div>
         <div class="highlight-card">
-          <span class="highlight-number">10%</span>
+          <span class="highlight-number" data-count-target="10" data-count-suffix="%">10%</span>
           <span class="highlight-label" data-i18n="hero.highlight3.label">FTE risparmiato</span>
         </div>
         <div class="highlight-card">
-          <span class="highlight-number">3</span>
+          <span class="highlight-number" data-count-target="3">3</span>
           <span class="highlight-label" data-i18n="hero.highlight4.label">Aziende</span>
         </div>
       </div>
@@ -295,6 +295,9 @@
     <!-- Skills -->
     <section class="section reveal" id="skills">
       <h2 class="section-title" data-i18n="skills.title">Skills</h2>
+      <div class="spider-chart-wrapper">
+        <div id="spiderChart"></div>
+      </div>
       <div class="skills-grid">
         <div class="skill-card">
           <div class="skill-icon">&#x1F4CA;</div>
@@ -524,6 +527,7 @@
   </div>
 
   <script src="circuit.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js" charset="utf-8"></script>
   <script src="translations.js"></script>
   <script src="i18n.js"></script>
   <script src="chat.js"></script>
