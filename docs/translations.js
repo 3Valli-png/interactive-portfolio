@@ -67,6 +67,7 @@ const TRANSLATIONS = {
     // ERP
     'proj.erp.title': 'ERP Gestionale',
     'proj.erp.desc': 'Gestionale completo per azienda di autotrasporti: dall\'acquisizione clienti alla fatturazione elettronica FatturaPA, con dashboard KPI e launcher portabile USB.',
+    'proj.erp.link.title': 'Apri ERP Gestionale Demo (credenziali prefilled)',
     // Protezione Civile
     'proj.protcivile.title': 'Interventi Protezione Civile',
     'proj.protcivile.desc': 'App web per gestire interventi di emergenza: mappa interattiva, gestione squadre e turni, geocodifica automatica, export PDF professionale.',
@@ -201,6 +202,7 @@ const TRANSLATIONS = {
     // ERP
     'proj.erp.title': 'ERP Management System',
     'proj.erp.desc': 'Complete management system for a trucking company: from client acquisition to FatturaPA electronic invoicing, with KPI dashboard and portable USB launcher.',
+    'proj.erp.link.title': 'Open ERP Management Demo (credentials prefilled)',
     // Protezione Civile
     'proj.protcivile.title': 'Civil Protection Interventions',
     'proj.protcivile.desc': 'Web app to manage emergency interventions: interactive map, team and shift management, automatic geocoding, professional PDF export.',
