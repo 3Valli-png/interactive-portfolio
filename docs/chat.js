@@ -480,34 +480,54 @@ function initChatWidget() {
     }
   });
 
-  // --- Chat Nudge Tooltip ---
+  // --- Proactive Chat Bubble Nudge ---
   const nudge = document.getElementById('chatNudge');
   const nudgeClose = document.getElementById('chatNudgeClose');
-  const NUDGE_KEY = 'portfolio-chat-nudge-seen';
+  const NUDGE_KEY = 'portfolio-chat-nudge-dismissed';
+  let nudgeDismissed = false;
+  let nudgeTimer = null;
+
+  function showNudge() {
+    if (nudgeDismissed || chatOpen || !nudge) return;
+    nudge.classList.add('visible');
+    // Auto-dismiss after 12 seconds
+    nudgeTimer = setTimeout(() => {
+      if (nudge.classList.contains('visible')) {
+        nudge.classList.remove('visible');
+      }
+    }, 12000);
+  }
 
   function dismissNudge() {
     nudge.classList.remove('visible');
-    localStorage.setItem(NUDGE_KEY, '1');
+    nudgeDismissed = true;
+    sessionStorage.setItem(NUDGE_KEY, '1');
+    if (nudgeTimer) clearTimeout(nudgeTimer);
   }
 
-  if (nudge && !localStorage.getItem(NUDGE_KEY)) {
-    setTimeout(() => {
-      if (!chatOpen) {
-        nudge.classList.add('visible');
-        // Auto-dismiss after 8 seconds
-        setTimeout(() => {
-          if (nudge.classList.contains('visible')) dismissNudge();
-        }, 8000);
-      }
-    }, 4000);
+  if (nudge && !sessionStorage.getItem(NUDGE_KEY)) {
+    // Show after 3 seconds on page load
+    setTimeout(showNudge, 3000);
 
-    nudgeClose.addEventListener('click', (e) => {
+    // Also re-trigger when user scrolls past the About section (they're engaged)
+    let scrollNudgeShown = false;
+    window.addEventListener('scroll', function onScrollNudge() {
+      if (scrollNudgeShown || nudgeDismissed || chatOpen) return;
+      var scrollPct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      if (scrollPct > 0.3) {
+        scrollNudgeShown = true;
+        // Small delay so it doesn't feel jarring
+        setTimeout(showNudge, 1500);
+      }
+    });
+
+    nudgeClose.addEventListener('click', function (e) {
       e.stopPropagation();
       dismissNudge();
     });
 
     // Dismiss nudge when chat is opened
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener('click', function () {
       if (nudge.classList.contains('visible')) dismissNudge();
     });
   }

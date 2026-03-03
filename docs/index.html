@@ -499,10 +499,14 @@
       <span class="chat-badge" id="chatBadge" style="display:none;">1</span>
     </button>
 
-    <div class="chat-nudge" id="chatNudge" role="tooltip">
-      <span data-i18n="chat.nudge">Chatta con il mio Digital Twin!</span>
-      <button class="chat-nudge-close" id="chatNudgeClose" aria-label="Chiudi">&times;</button>
-      <div class="chat-nudge-arrow"></div>
+    <!-- Proactive Chat Bubble -->
+    <div class="chat-bubble-nudge" id="chatNudge" role="status" aria-live="polite">
+      <div class="chat-bubble-avatar">VR</div>
+      <div class="chat-bubble-body">
+        <p class="chat-bubble-name">Valerio's Assistant</p>
+        <p class="chat-bubble-text" data-i18n="chat.nudge">Ciao! Sono il Digital Twin di Valerio. Chiedimi qualsiasi cosa!</p>
+      </div>
+      <button class="chat-bubble-close" id="chatNudgeClose" aria-label="Chiudi">&times;</button>
     </div>
 
     <div class="chat-window" id="chatWindow" aria-hidden="true">

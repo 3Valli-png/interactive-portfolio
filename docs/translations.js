@@ -138,7 +138,7 @@ const TRANSLATIONS = {
     'chat.welcome': "Ciao! Sono l'assistente virtuale di Valerio. Chiedimi qualcosa sulle sue competenze, esperienze, progetti o formazione.",
     'chat.error': 'Errore di connessione. Verifica che il server sia attivo e riprova.',
     'chat.clear.title': 'Cancella',
-    'chat.nudge': 'Chatta con il mio Digital Twin!',
+    'chat.nudge': 'Ciao! Sono il Digital Twin di Valerio. Chiedimi qualsiasi cosa!',
   },
 
   en: {
@@ -275,6 +275,6 @@ const TRANSLATIONS = {
     'chat.welcome': "Hi! I'm Valerio's virtual assistant. Ask me about his skills, experience, projects or education.",
     'chat.error': 'Connection error. Check that the server is running and try again.',
     'chat.clear.title': 'Clear',
-    'chat.nudge': 'Chat with my Digital Twin!',
+    'chat.nudge': "Hi! I'm Valerio's Digital Twin. Ask me anything!",
   }
 };
