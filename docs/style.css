@@ -1151,6 +1151,66 @@ img {
   transform: scale(1.05);
 }
 
+/* Chat Nudge Tooltip */
+.chat-nudge {
+  position: absolute;
+  bottom: 68px;
+  right: 0;
+  background: var(--color-primary);
+  color: white;
+  padding: 10px 36px 10px 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(0, 179, 65, 0.35);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.chat-nudge.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.chat-nudge-arrow {
+  position: absolute;
+  bottom: -6px;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  background: var(--color-primary);
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+.chat-nudge-close {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.chat-nudge-close:hover {
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .chat-nudge {
+    display: none;
+  }
+}
+
 .chat-badge {
   position: absolute;
   top: -4px;

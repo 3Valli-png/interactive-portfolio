@@ -479,6 +479,38 @@ function initChatWidget() {
       toggle.click();
     }
   });
+
+  // --- Chat Nudge Tooltip ---
+  const nudge = document.getElementById('chatNudge');
+  const nudgeClose = document.getElementById('chatNudgeClose');
+  const NUDGE_KEY = 'portfolio-chat-nudge-seen';
+
+  function dismissNudge() {
+    nudge.classList.remove('visible');
+    localStorage.setItem(NUDGE_KEY, '1');
+  }
+
+  if (nudge && !localStorage.getItem(NUDGE_KEY)) {
+    setTimeout(() => {
+      if (!chatOpen) {
+        nudge.classList.add('visible');
+        // Auto-dismiss after 8 seconds
+        setTimeout(() => {
+          if (nudge.classList.contains('visible')) dismissNudge();
+        }, 8000);
+      }
+    }, 4000);
+
+    nudgeClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dismissNudge();
+    });
+
+    // Dismiss nudge when chat is opened
+    toggle.addEventListener('click', () => {
+      if (nudge.classList.contains('visible')) dismissNudge();
+    });
+  }
 }
 
 // ============================================
