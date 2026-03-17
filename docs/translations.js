@@ -72,8 +72,8 @@ const TRANSLATIONS = {
     // Protezione Civile
     'proj.protcivile.title': 'Interventi Protezione Civile',
     'proj.protcivile.desc': 'App web per gestire interventi di emergenza: mappa interattiva, gestione squadre e turni, geocodifica automatica, export PDF professionale.',
-    // SplitExpense
-    'proj.expense.desc': 'App per dividere le spese tra due persone con analytics mensili, grafici, categorie personalizzabili e funzionamento offline (PWA).',
+    // Dividilo!
+    'proj.expense.desc': 'App mobile-first per gestire le finanze di coppia: spese condivise con calcolo automatico dei saldi, spese personali, budget mensili per categoria e analytics con grafici interattivi. Supporta gruppi con codice invito.',
     // Catasto
     'proj.catasto.title': 'Catasto Unified',
     'proj.catasto.desc': 'Consultazione e export dati catastali italiani: selezione su mappa, import/export CSV e Shapefile, servizi WFS INSPIRE dell\'Agenzia delle Entrate.',
@@ -209,8 +209,8 @@ const TRANSLATIONS = {
     // Protezione Civile
     'proj.protcivile.title': 'Civil Protection Interventions',
     'proj.protcivile.desc': 'Web app to manage emergency interventions: interactive map, team and shift management, automatic geocoding, professional PDF export.',
-    // SplitExpense
-    'proj.expense.desc': 'App for splitting expenses between two people with monthly analytics, charts, customizable categories and offline mode (PWA).',
+    // Dividilo!
+    'proj.expense.desc': 'Mobile-first app for managing couple finances: shared expenses with automatic balance calculation, personal expenses, monthly budgets by category and analytics with interactive charts. Supports groups with invite codes.',
     // Catasto
     'proj.catasto.title': 'Catasto Unified',
     'proj.catasto.desc': 'Italian cadastral data lookup and export: map selection, CSV and Shapefile import/export, WFS INSPIRE services from the Revenue Agency.',
