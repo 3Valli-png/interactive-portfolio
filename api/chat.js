@@ -77,10 +77,9 @@ module.exports = async function handler(req, res) {
 
     // Segnala fine stream
     res.write('data: [DONE]\n\n');
-    res.end();
 
-    // Log asincrono — non blocca la risposta
-    logChat({
+    // Log prima di chiudere — Vercel termina la funzione dopo res.end()
+    await logChat({
       userMessage: cleanMessage,
       botResponse: fullResponse,
       lang,
@@ -89,6 +88,8 @@ module.exports = async function handler(req, res) {
       ragChunks: ragChunkIds,
       req,
     });
+
+    res.end();
 
   } catch (error) {
     console.error('Chat API error:', error);
