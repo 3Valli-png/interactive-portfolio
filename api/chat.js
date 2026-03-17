@@ -1,6 +1,7 @@
 const Groq = require('groq-sdk');
 const { getRelevantContext } = require('../lib/rag');
 const { validateInput, sanitizeInput, detectLanguage, buildSystemPrompt } = require('../lib/guardrails');
+const { logChat } = require('../lib/logger');
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const MODEL = process.env.GROQ_MODEL || 'openai/gpt-oss-120b';
@@ -21,6 +22,8 @@ module.exports = async function handler(req, res) {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
 
+  const startTime = Date.now();
+
   try {
     const { message, history = [], lang: requestedLang } = req.body;
 
@@ -35,6 +38,7 @@ module.exports = async function handler(req, res) {
 
     // RAG: recupera contesto rilevante
     const { chunks: relevantChunks } = getRelevantContext(cleanMessage);
+    const ragChunkIds = relevantChunks.map(c => c.id || c.title || 'unknown');
 
     // Costruisci system prompt con contesto
     const systemPrompt = buildSystemPrompt(relevantChunks, lang);
@@ -61,10 +65,12 @@ module.exports = async function handler(req, res) {
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
 
-    // Stream dei token
+    // Stream dei token — accumula la risposta completa per il log
+    let fullResponse = '';
     for await (const chunk of stream) {
       const content = chunk.choices[0]?.delta?.content;
       if (content) {
+        fullResponse += content;
         res.write(`data: ${JSON.stringify({ chunk: content })}\n\n`);
       }
     }
@@ -72,6 +78,17 @@ module.exports = async function handler(req, res) {
     // Segnala fine stream
     res.write('data: [DONE]\n\n');
     res.end();
+
+    // Log asincrono — non blocca la risposta
+    logChat({
+      userMessage: cleanMessage,
+      botResponse: fullResponse,
+      lang,
+      model: MODEL,
+      durationMs: Date.now() - startTime,
+      ragChunks: ragChunkIds,
+      req,
+    });
 
   } catch (error) {
     console.error('Chat API error:', error);
